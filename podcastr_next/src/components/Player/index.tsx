@@ -1,12 +1,35 @@
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import styles from "./styles.module.scss";
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 
 export default function Player() {
-  const { episodeList, currentEpisodeIndex } = useContext(PlayerContext);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const {
+    episodeList,
+    currentEpisodeIndex,
+    isPlaying,
+    togglePlay,
+    setPlayingState,
+  } = useContext(PlayerContext);
+
+  useEffect(() => {
+    if (!audioRef.current) {
+      return;
+    }
+
+    if (isPlaying) {
+      // Inicia o audio
+      audioRef.current.play();
+    } else {
+      // Para o audio
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
+
   const episode = episodeList[currentEpisodeIndex];
 
   return (
@@ -50,6 +73,15 @@ export default function Player() {
           </div>
           <span>00:00</span>
         </div>
+        {(episode) && (
+          <audio
+            src={episode.url}
+            ref={audioRef}
+            autoPlay
+            onPlay={() => setPlayingState(true)}
+            onPause={() => setPlayingState(false)}
+          />
+        )}
         <div className={styles.buttons}>
           <button
             type="button"
@@ -67,8 +99,13 @@ export default function Player() {
             type="button"
             className={styles.playButton}
             disabled={!episode}
+            onClick={togglePlay}
           >
-            <img src="/play.svg" alt="Tocar"/>
+            {(isPlaying) ? (
+              <img src="/pause.svg" alt="Pausar"/>
+            ) : (
+              <img src="/play.svg" alt="Tocar"/>
+            )}
           </button>
           <button
             type="button"
@@ -87,7 +124,3 @@ export default function Player() {
     </div>
   );
 }
-
-/*
-  Tempo video => Aula 04 => 55:32
-*/
