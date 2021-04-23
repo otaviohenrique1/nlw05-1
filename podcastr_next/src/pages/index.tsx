@@ -7,6 +7,8 @@ import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { converterDurationToTimeString } from "../utils/converterDurationToTimeString";
 import styles from "./home.module.scss";
+import { useContext } from "react";
+import { PlayerContext } from "../contexts/PlayerContext";
 
 type Episode = { 
   id: string;
@@ -28,6 +30,8 @@ type HomeProps = {
 }
 
 export default function Home({ latestEpisodes, allApisodes }: HomeProps) {
+  const { play } = useContext(PlayerContext);
+
   // useEffect(() => {
   //   fetch('http://localhost:3333/episodes')
   //     .then(response => response.json())
@@ -57,7 +61,10 @@ export default function Home({ latestEpisodes, allApisodes }: HomeProps) {
                   <span>{episode.publishedAt}</span>
                   <span>{episode.durationAsString}</span>
                 </div>
-                <button type="button">
+                <button
+                  type="button"
+                  onClick={() => play(episode)}
+                >
                   <img src="/play-green.svg" alt="Tocar episódio"/>
                 </button>
               </li>
