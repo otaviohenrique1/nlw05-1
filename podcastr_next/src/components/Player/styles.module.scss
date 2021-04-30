@@ -18,7 +18,7 @@
   }
 
   strong {
-    font-family: 'Lexend', sans-serif;
+    font-family: Lexend, sans-serif;
     font-weight: 600;
   }
 
@@ -73,6 +73,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
+
   span {
     display: inline-block;
     width: 4rem;
@@ -80,6 +81,7 @@
   }
   .slider {
     flex: 1;
+
     .emptySlider {
       width: 100%;
       height: 4px;

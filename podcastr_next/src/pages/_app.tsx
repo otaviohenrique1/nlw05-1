@@ -20,8 +20,6 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp
 
-/* Trilha-Reactjs-Nextjs -> Tempo Video -> 00:33:22 */
-
 /*
 import { PlayerContext } from '../contexts/PlayerContext';
 import { useState } from 'react';

@@ -118,10 +118,14 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     thumbnail: data.thumbnail,
     members: data.members,
     publishedAt: format(parseISO(data.published_at), 'd MMM yy', { locale: ptBR}),
-    duration: Number(data.duration),
-    durationAsString: converterDurationToTimeString(Number(data.duration)),
-    description: data.description,
-    url: data.url,
+    duration: Number(data.file.duration),
+    // duration: Number(data.duration),
+    durationAsString: converterDurationToTimeString(Number(data.file.duration)),
+    // durationAsString: converterDurationToTimeString(Number(data.duration)),
+    description: data.file.description,
+    // description: data.description,
+    url: data.file.url,
+    // url: data.url,
   };
 
   return {
