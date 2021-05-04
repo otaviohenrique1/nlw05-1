@@ -16,22 +16,27 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBarWidget(),
       body: Container(
         child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LevelButtonWidget(
-                label: "Fácil",
-              ),
-              LevelButtonWidget(
-                label: "Médio",
-              ),
-              LevelButtonWidget(
-                label: "Dificil",
-              ),
-              LevelButtonWidget(
-                label: "Perito",
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                LevelButtonWidget(
+                  label: "Fácil",
+                ),
+                LevelButtonWidget(
+                  label: "Médio",
+                ),
+                LevelButtonWidget(
+                  label: "Difícil",
+                ),
+                LevelButtonWidget(
+                  label: "Perito",
+                ),
+              ],
+            ),
           ),
         ),
       ),
